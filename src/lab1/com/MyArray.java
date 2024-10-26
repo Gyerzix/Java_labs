@@ -3,51 +3,46 @@ package lab1.com;
 import java.util.Arrays;
 
 public class MyArray {
-    private int[] array;
+    private int[] arr;
     private int size;
 
     public MyArray(int capacity) {
-        array = new int[capacity];
+        arr = new int[capacity];
         size = 0;
     }
 
     public void add(int element) {
-        if (size == array.length) {
+        if (size == arr.length) {
             resize();
         }
-        array[size++] = element;
+        arr[size++] = element;
+    }
+
+    private void resize() {
+        int[] newArr = new int[arr.length * 2];
+        System.arraycopy(arr, 0, newArr, 0, arr.length);
+        arr = newArr;
     }
 
     public int get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index out of range");
+        if (index >= 0 && index < size) {
+            return arr[index];
         }
-        return array[index];
-    }
-
-    public void remove(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index out of range");
-        }
-        for (int i = index; i < size - 1; i++) {
-            array[i] = array[i + 1];
-        }
-        size--;
+        throw new IndexOutOfBoundsException("Index out of bounds");
     }
 
     public int size() {
         return size;
     }
 
-    private void resize() {
-        array = Arrays.copyOf(array, array.length * 2);
+    public boolean isEmpty() {
+        return size == 0;
     }
 
-    public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
+    public void clear() {
+        arr = new int[arr.length];
+        size = 0;
     }
 }
+
 

@@ -1,11 +1,8 @@
 package lab3.com;
 
 import java.util.Random;
-import java.util.Arrays;
 
 public class BubbleSortPerformance {
-
-    // Метод пузырьковой сортировки
     public static void bubbleSort(int[] array) {
         int n = array.length;
         boolean swapped;
@@ -21,29 +18,32 @@ public class BubbleSortPerformance {
                     swapped = true;
                 }
             }
-            // Если внутренний цикл не совершил ни одной перестановки, то массив отсортирован
             if (!swapped) break;
         }
     }
 
-    public static void main(String[] args) {
-        // Генерация массива случайных чисел
-        int size = 20; // Размер массива
-        int[] array = new int[size];
+    public static void testPerformance(int[] sizes) {
         Random random = new Random();
-        for (int i = 0; i < size; i++) {
-            array[i] = random.nextInt(size);
+
+        for (int size : sizes) {
+            int[] array = new int[size];
+            for (int i = 0; i < size; i++) {
+                array[i] = random.nextInt(size);
+            }
+
+            long startTime = System.currentTimeMillis();
+            bubbleSort(array);
+            long endTime = System.currentTimeMillis();
+
+            System.out.println("Размер массива: " + size + " | Время выполнения: " + (endTime - startTime) + " мс");
         }
+    }
 
-        // Вывод неотсортированного массива
-        System.out.println("Оригинальный массив:");
-        System.out.println(Arrays.toString(array));
+    public static void main(String[] args) {
+        int[] sizes = {1000, 5000, 10000, 20000, 50000};
 
-        bubbleSort(array);
-
-        // Вывод отсортированного массива
-        System.out.println("Отсортированный массив:");
-        System.out.println(Arrays.toString(array));
+        testPerformance(sizes);
     }
 }
+
 

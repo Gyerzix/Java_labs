@@ -51,5 +51,11 @@ public class ArrayQueue {
     public boolean isFull() {
         return count == capacity;
     }
-}
 
+    public void printQueue() {
+        for (int i = 0; i < count; i++) {
+            System.out.print(arr[(front + i) % capacity] + " ");
+        }
+        System.out.println();
+    }
+}

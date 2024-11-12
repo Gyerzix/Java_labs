@@ -48,5 +48,13 @@ public class LinkedListQueue {
     public boolean isEmpty() {
         return front == null;
     }
-}
 
+    public void printQueue() {
+        Node current = front;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}

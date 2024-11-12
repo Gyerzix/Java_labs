@@ -42,5 +42,17 @@ public class ArrayStack {
     public boolean isFull() {
         return top == capacity - 1;
     }
+
+    public void printStack() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return;
+        }
+        // Выводим элементы от top к 0 (сверху вниз)
+        for (int i = top; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 }
 

@@ -40,5 +40,13 @@ public class LinkedListStack {
     public boolean isEmpty() {
         return top == null;
     }
-}
 
+    public void printStack() {
+        Node current = top;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
